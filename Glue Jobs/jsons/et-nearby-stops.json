@@ -1,0 +1,196 @@
+{
+	"jobConfig": {
+		"name": "et-nearby-stops",
+		"description": "",
+		"role": "arn:aws:iam::463470950584:role/etl-last-mile-role",
+		"command": "glueetl",
+		"version": "5.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 0,
+		"timeout": 480,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "et-nearby-stops.py",
+		"scriptLocation": "s3://aws-glue-assets-463470950584-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-12-05T07:23:21.247Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-463470950584-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1733383531547": {
+			"nodeId": "node-1733383531547",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383512837"
+			],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733383531547",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "glueparquet",
+			"compression": "snappy",
+			"path": "s3://last-mile-data-transformed/nearby-stops-transformed/",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null,
+				"database": null,
+				"table": null
+			},
+			"updateCatalogOptions": "none",
+			"autoDataQuality": {
+				"isEnabled": true,
+				"evaluationContext": "EvaluateDataQuality_node1733381410148"
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383252498": {
+			"nodeId": "node-1733383252498",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383236607"
+			],
+			"name": "Evaluate Data Quality",
+			"generatedNodeName": "EvaluateDataQuality_node1733383252498",
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"ruleset": "Rules = [\n    # Completeness Checks\n    IsComplete \"global_stop_id\",                 # Ensures `global_stop_id` is not null\n    IsComplete \"location_name\",                 # Ensures `location_name` is not null\n    IsComplete \"stop_lat\",                      # Ensures `stop_lat` is not null\n    IsComplete \"stop_lon\",                      # Ensures `stop_lon` is not null\n    IsComplete \"stop_name\",                     # Ensures `stop_name` is not null\n\n    # Uniqueness Checks\n    IsUnique \"global_stop_id\",                  # Ensures `global_stop_id` is unique across records\n\n    # Numeric Type Validation (Double/Long)\n    ColumnDataType \"distance\" = \"long\",         # Validates `distance` is of type long\n    ColumnDataType \"location_type\" = \"long\",    # Validates `location_type` is of type long\n    ColumnDataType \"route_type\" = \"long\",       # Validates `route_type` is of type long\n    ColumnDataType \"stop_lat\" = \"double\",       # Validates `stop_lat` is of type double\n    ColumnDataType \"stop_lon\" = \"double\",       # Validates `stop_lon` is of type double\n    ColumnDataType \"wheelchair_boarding\" = \"long\", # Validates `wheelchair_boarding` is of type long\n\n    # Column Count Validation\n    ColumnCount between 10 and 15               # Ensures dataset has between 10 and 15 columns\n]\n",
+			"output": "EvaluationResults",
+			"publishingOptions": {
+				"evaluationContext": null,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": "",
+				"resultsPublishingEnabled": true
+			},
+			"stopJobOnFailureOptions": {
+				"stopJobOnFailureTiming": null
+			},
+			"additionalOptions": {
+				"performanceTuning.caching": "CACHE_NOTHING"
+			},
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383490949": {
+			"nodeId": "node-1733383490949",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383386925"
+			],
+			"name": "Drop Fields",
+			"generatedNodeName": "DropFields_node1733383490949",
+			"classification": "Transform",
+			"type": "DropFields",
+			"paths": [
+				"parent_station_global_stop_id"
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383512837": {
+			"nodeId": "node-1733383512837",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383490949"
+			],
+			"name": "Drop Null Fields",
+			"generatedNodeName": "DropNullFields_node1733383512837",
+			"classification": "Transform",
+			"type": "DropNullFields",
+			"nullCheckBoxList": {
+				"isEmpty": true,
+				"isNullString": null,
+				"isNegOne": false
+			},
+			"nullTextList": [],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383388011": {
+			"nodeId": "node-1733383388011",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383252498"
+			],
+			"name": "ruleOutcomes",
+			"generatedNodeName": "ruleOutcomes_node1733383388011",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383386925": {
+			"nodeId": "node-1733383386925",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383252498"
+			],
+			"name": "originalData",
+			"generatedNodeName": "originalData_node1733383386925",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383236607": {
+			"nodeId": "node-1733383236607",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733383236607",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "lastmile-db",
+			"table": "nearby_stops",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}

@@ -1,0 +1,173 @@
+{
+	"jobConfig": {
+		"name": "extract-transform-capital-bikeshare",
+		"description": "",
+		"role": "arn:aws:iam::463470950584:role/etl-last-mile-role",
+		"command": "glueetl",
+		"version": "5.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 0,
+		"timeout": 480,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "extract-transform-capital-bikeshare.py",
+		"scriptLocation": "s3://aws-glue-assets-463470950584-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-12-05T07:24:26.772Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-463470950584-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1733379183786": {
+			"nodeId": "node-1733379183786",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733379183786",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "lastmile-db",
+			"table": "capital_bikeshare",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1733383238998": {
+			"nodeId": "node-1733383238998",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733379889070"
+			],
+			"name": "originalData",
+			"generatedNodeName": "originalData_node1733383238998",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383329243": {
+			"nodeId": "node-1733383329243",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383238998"
+			],
+			"name": "Drop Duplicates",
+			"generatedNodeName": "DropDuplicates_node1733383329243",
+			"classification": "Transform",
+			"type": "DropDuplicates",
+			"parentsValid": true,
+			"calculatedType": "",
+			"columns": [],
+			"codeGenVersion": 2
+		},
+		"node-1733379889070": {
+			"nodeId": "node-1733379889070",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733379183786"
+			],
+			"name": "Evaluate Data Quality",
+			"generatedNodeName": "EvaluateDataQuality_node1733379889070",
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"ruleset": "# Example rules: Completeness \"colA\" between 0.4 and 0.8, ColumnCount > 10\nRules = [\n    Uniqueness \"ride_id\" > 0.5,\n    Completeness \"ride_id\" between 0.9 and 1,\n    IsComplete \"started_at\",\n    IsComplete \"ended_at\"\n]",
+			"output": "EvaluationResults",
+			"publishingOptions": {
+				"evaluationContext": null,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": "",
+				"resultsPublishingEnabled": true
+			},
+			"stopJobOnFailureOptions": {
+				"stopJobOnFailureTiming": null
+			},
+			"additionalOptions": {
+				"performanceTuning.caching": "CACHE_NOTHING"
+			},
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383382160": {
+			"nodeId": "node-1733383382160",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383329243"
+			],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733383382160",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "csv",
+			"compression": "snappy",
+			"path": "s3://last-mile-data-transformed/capital-bikeshare-transformed/",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null,
+				"database": null,
+				"table": null
+			},
+			"updateCatalogOptions": "none",
+			"autoDataQuality": {
+				"isEnabled": true,
+				"evaluationContext": "EvaluateDataQuality_node1733378903696"
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383240360": {
+			"nodeId": "node-1733383240360",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733379889070"
+			],
+			"name": "ruleOutcomes",
+			"generatedNodeName": "ruleOutcomes_node1733383240360",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}

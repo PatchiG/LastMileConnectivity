@@ -1,0 +1,183 @@
+{
+	"jobConfig": {
+		"name": "et-census",
+		"description": "",
+		"role": "arn:aws:iam::463470950584:role/etl-last-mile-role",
+		"command": "glueetl",
+		"version": "4.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 0,
+		"timeout": 2880,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "et-census.py",
+		"scriptLocation": "s3://aws-glue-assets-463470950584-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-12-04T19:27:04.792Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-463470950584-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1733342630223": {
+			"nodeId": "node-1733342630223",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733342595724"
+			],
+			"name": "ruleOutcomes",
+			"generatedNodeName": "ruleOutcomes_node1733342630223",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733351338824": {
+			"nodeId": "node-1733351338824",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733351318625"
+			],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733351338824",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "glueparquet",
+			"compression": "snappy",
+			"path": "s3://last-mile-data-transformed/us-census-transformed/",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null,
+				"database": null,
+				"table": null
+			},
+			"updateCatalogOptions": "none",
+			"autoDataQuality": {
+				"isEnabled": true,
+				"evaluationContext": "EvaluateDataQuality_node1733344159555"
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733355964968": {
+			"nodeId": "node-1733355964968",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733351318625"
+			],
+			"name": "AWS Glue Data Catalog",
+			"generatedNodeName": "AWSGlueDataCatalog_node1733355964968",
+			"classification": "DataSink",
+			"type": "Catalog",
+			"streamingBatchInterval": 100,
+			"database": "lastmile-db",
+			"table": "us_census",
+			"format": "json",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null
+			},
+			"updateCatalogOptions": "none",
+			"calculatedType": "S3CatalogDataSink",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1733351318625": {
+			"nodeId": "node-1733351318625",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733342595724"
+			],
+			"name": "originalData",
+			"generatedNodeName": "originalData_node1733351318625",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733342595724": {
+			"nodeId": "node-1733342595724",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733340279578"
+			],
+			"name": "Evaluate Data Quality",
+			"generatedNodeName": "EvaluateDataQuality_node1733342595724",
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"ruleset": "# Example rules: Completeness \"colA\" between 0.4 and 0.8, ColumnCount > 10\nRules = [\n    Completeness \"label\" = 1.0,\n    ColumnValues \"Year\" in [ 2022, 2023 ] with threshold > 0.95,\n    ColumnValues \"Level\" in [ \"National\", \"State\",\"County\",\"Metropolitan\" ] with threshold > 0.95,\n    RowCount > 25,\n    ColumnCount = 29\n]",
+			"output": "EvaluationResults",
+			"publishingOptions": {
+				"evaluationContext": null,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": "",
+				"resultsPublishingEnabled": true
+			},
+			"stopJobOnFailureOptions": {
+				"stopJobOnFailureTiming": null
+			},
+			"additionalOptions": {
+				"observations.scope": "ALL",
+				"performanceTuning.caching": "CACHE_NOTHING"
+			},
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733340279578": {
+			"nodeId": "node-1733340279578",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733340279578",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "lastmile-db",
+			"table": "us_census",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}

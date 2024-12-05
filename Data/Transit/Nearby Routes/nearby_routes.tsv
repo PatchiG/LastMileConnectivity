@@ -1,0 +1,295 @@
+route_short_name	location	global_route_id	route_long_name	route_type	network_name	latitudes	longitudes
+11Y	Washington, DC	WMATA:7693	Mt Vernon Express	3	Metrobus	38.8951	-77.0364
+33	Washington, DC	WMATA:36441	Wisconsin Avenue	3	Metrobus	38.8951	-77.0364
+32	Washington, DC	WMATA:7221	Pennsylvania Avenue	3	Metrobus	38.8951	-77.0364
+36	Washington, DC	WMATA:7223	Pennsylvania Avenue	3	Metrobus	38.8951	-77.0364
+52	Washington, DC	WMATA:7231	14th Street	3	Metrobus	38.8951	-77.0364
+3F	Washington, DC	WMATA:208054	Langston Blvd - McPherson Sq L	3	Metrobus	38.8951	-77.0364
+541	Washington, DC	PRTCVA:263295	Stafford to Washington DC / State Dpt	3	OmniRide	38.8951	-77.0364
+981	Washington, DC	PRTCVA:263304	Lake Ridge Washington Express	3	OmniRide	38.8951	-77.0364
+971	Washington, DC	PRTCVA:263302	Dale City Washington DC Express	3	OmniRide	38.8951	-77.0364
+953	Washington, DC	PRTCVA:263301	Montclair Washington DC Express	3	OmniRide	38.8951	-77.0364
+943	Washington, DC	PRTCVA:263299	Stafford to L'Enfant Plaza	3	OmniRide	38.8951	-77.0364
+611	Washington, DC	PRTCVA:141046	Gainesville Washington DC Express	3	OmniRide	38.8951	-77.0364
+699	Washington, DC	FFC:114731	Monument Drive - Downtown D.C.	3	Fairfax Connector	38.8951	-77.0364
+305	Washington, DC	MDTAC:156587	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.8951	-77.0364
+325	Washington, DC	MDTAC:156591	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.8951	-77.0364
+43	Washington, DC	WMATA:7229	Mount Pleasant	3	Metrobus	38.8951	-77.0364
+16Y	Washington, DC	WMATA:7673	Columbia Pk-Farragut Square	3	Metrobus	38.8951	-77.0364
+42	Washington, DC	WMATA:7228	Mount Pleasant	3	Metrobus	38.8951	-77.0364
+230	Washington, DC	MDTAC:156583	Severna Park & Annapolis - DC	3	MTA Commuter Bus	38.8951	-77.0364
+250	Washington, DC	MDTAC:156585	Kent Island & Davidsonville - DC	3	MTA Commuter Bus	38.8951	-77.0364
+70	Silver Spring, MD	WMATA:7239	Georgia Avenue-7th Street	3	Metrobus	38.9907	-77.0261
+28	Silver Spring, MD	MTGM:8425	Free-Silver Spring Vango Shuttle	3	Ride On	38.9907	-77.0261
+Red	Silver Spring, MD	WMATAS:7381	Metrorail Red Line	1	Metrorail	38.9907	-77.0261
+17	Silver Spring, MD	MTGM:8415	Silver Spring-Langley Park	3	Ride On	38.9907	-77.0261
+F4	Silver Spring, MD	WMATA:7314	New Carrollton-Silver Spring Ln	3	Metrobus	38.9907	-77.0261
+16	Silver Spring, MD	MTGM:8414	Silver Spring-Takoma	3	Ride On	38.9907	-77.0261
+18	Silver Spring, MD	MTGM:8416	Silver Spring - Takoma - Langley	3	Ride On	38.9907	-77.0261
+20	Silver Spring, MD	MTGM:8418	Silver Spring-Hillandale	3	Ride On	38.9907	-77.0261
+15	Silver Spring, MD	MTGM:8413	Silver Spring-Langley Park	3	Ride On	38.9907	-77.0261
+19	Silver Spring, MD	MTGM:8417	Silver Spring-Northwood	3	Ride On	38.9907	-77.0261
+Brunswick	Silver Spring, MD	MARCMD:155628	Brunswick - Washington	2	MARC	38.9907	-77.0261
+Y2	Silver Spring, MD	WMATA:36445	Georgia Ave-Maryland	3	Metrobus	38.9907	-77.0261
+Y7	Silver Spring, MD	WMATA:7418	Georgia Ave-Maryland	3	Metrobus	38.9907	-77.0261
+Q4	Silver Spring, MD	WMATA:7368	Veirs Mill Road	3	Metrobus	38.9907	-77.0261
+Y8	Silver Spring, MD	WMATA:7419	Georgia Ave-Maryland	3	Metrobus	38.9907	-77.0261
+14	Silver Spring, MD	MTGM:8412	Silver Spring-Takoma	3	Ride On	38.9907	-77.0261
+13	Silver Spring, MD	MTGM:8411	Silver Spring-Takoma	3	Ride On	38.9907	-77.0261
+12	Silver Spring, MD	MTGM:8410	Silver Spring-Takoma	3	Ride On	38.9907	-77.0261
+79	Silver Spring, MD	WMATA:7241	Georgia Avenue Metroextra	3	Metrobus	38.9907	-77.0261
+S9	Silver Spring, MD	WMATA:7386	16th Street Metroextra	3	Metrobus	38.9907	-77.0261
+S2	Silver Spring, MD	WMATA:7384	16th Street	3	Metrobus	38.9907	-77.0261
+22	Silver Spring, MD	MTGM:8420	Silver Spring-Hillandale	3	Ride On	38.9907	-77.0261
+21	Silver Spring, MD	MTGM:8419	Silver Spring-Briggs Chaney P&R	3	Ride On	38.9907	-77.0261
+Z7	Silver Spring, MD	WMATA:73780	Laurel-Burtonsville Express	3	Metrobus	38.9907	-77.0261
+5	Silver Spring, MD	MTGM:8403	Silver Spring-Twinbrook Station	3	Ride On	38.9907	-77.0261
+4	Silver Spring, MD	MTGM:8402	Silver Spring-Wheaton	3	Ride On	38.9907	-77.0261
+2	Silver Spring, MD	MTGM:8400	Silver Spring-Lyttonsville	3	Ride On	38.9907	-77.0261
+1	Silver Spring, MD	MTGM:8399	Silver Spring-Friendship Heights	3	Ride On	38.9907	-77.0261
+J2	Silver Spring, MD	WMATA:7337	Bethesda-Silver Spring	3	Metrobus	38.9907	-77.0261
+Z8	Silver Spring, MD	WMATA:7426	Silver Spring-Fairland	3	Metrobus	38.9907	-77.0261
+9	Silver Spring, MD	MTGM:8407	Silver Spring-Wheaton	3	Ride On	38.9907	-77.0261
+8	Silver Spring, MD	MTGM:8406	Silver Spring-Wheaton	3	Ride On	38.9907	-77.0261
+Z6	Silver Spring, MD	WMATA:7425	Silver Spring-Fairland	3	Metrobus	38.9907	-77.0261
+Z2	Silver Spring, MD	WMATA:7423	Colesville - Ashton	3	Metrobus	38.9907	-77.0261
+Blue	Silver Spring, MD	MTGM:198880	Flash Blue	3	Ride On	38.9907	-77.0261
+Orange	Silver Spring, MD	MTGM:198881	Flash Orange	3	Ride On	38.9907	-77.0261
+325	Silver Spring, MD	MDTAC:156591	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.9907	-77.0261
+315	Silver Spring, MD	MDTAC:156589	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.9907	-77.0261
+305	Silver Spring, MD	MDTAC:156587	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.9907	-77.0261
+70	Bethesda, MD	MTGM:8460	Germantown-Bethesda Express	3	Ride On	39.0047	-77.1003
+J1	Bethesda, MD	WMATA:7333	Bethesda-Silver Spring	3	Metrobus	39.0047	-77.1003
+J2	Bethesda, MD	WMATA:7337	Bethesda-Silver Spring	3	Metrobus	39.0047	-77.1003
+46	Bethesda, MD	MTGM:8440	Mont.College-Rockv-Medical Ctr	3	Ride On	39.0047	-77.1003
+34	Bethesda, MD	MTGM:8431	Aspen Hill-Friendship Heights	3	Ride On	39.0047	-77.1003
+30	Bethesda, MD	MTGM:8427	Bethesda-Medical Center	3	Ride On	39.0047	-77.1003
+203	Bethesda, MD	MDTAC:156579	Columbia - Bethesda	3	MTA Commuter Bus	39.0047	-77.1003
+Red	Bethesda, MD	WMATAS:7381	Metrorail Red Line	1	Metrorail	39.0047	-77.1003
+798	Bethesda, MD	FFC:316187	Tyrons - Bethesda	3	Fairfax Connector	39.0047	-77.1003
+101	Bethesda, MD	MTGM:113122	Lakeforest-Medical Ctr	3	Ride On	39.0047	-77.1003
+33	Bethesda, MD	MTGM:8430	Glenmont-Medical Center	3	Ride On	39.0047	-77.1003
+47	Bethesda, MD	MTGM:8441	Rockville-Mont. Mall-Bethesda	3	Ride On	39.0047	-77.1003
+Orange	Arlington, VA	WMATAS:7380	Metrorail Orange Line	1	Metrorail	38.8875	-77.0981
+Silver	Arlington, VA	WMATAS:43779	Metrorail Silver Line	1	Metrorail	38.8875	-77.0981
+38B	Arlington, VA	WMATA:7730	Ballston-Farragut Square	3	Metrobus	38.8875	-77.0981
+41	Arlington, VA	ART:8374	Arlington Mill-Ballston-Crthous	3	ART	38.8875	-77.0981
+42	Arlington, VA	ART:8375	Ballston-Pentagon-Pentagon Cty	3	ART	38.8875	-77.0981
+56	Arlington, VA	ART:300838	Military Road - Rosslyn Metro	3	ART	38.8875	-77.0981
+622	Arlington, VA	PRTCVA:141048	Haymarket to Rosslyn / Ballston	3	OmniRide	38.8875	-77.0981
+932	Arlington, VA	PRTCVA:263298	Falmouth to Pentagon / Rosslyn / Ballst	3	OmniRide	38.8875	-77.0981
+972	Arlington, VA	PRTCVA:263303	Dale City Crystal City Express	3	OmniRide	38.8875	-77.0981
+77	Arlington, VA	ART:8386	Shirlingtn-Lyon Park-Courthouse	3	ART	38.8875	-77.0981
+10B	Alexandria, VA	WMATA:7671	Hunting Point-Ballston	3	Metrobus	38.8048	-77.0469
+10A	Alexandria, VA	WMATA:7641	Alexandria-Pentagon	3	Metrobus	38.8048	-77.0469
+11Y	Alexandria, VA	WMATA:7693	Mt Vernon Express	3	Metrobus	38.8048	-77.0469
+30	Alexandria, VA	DASH:202672	Van Dorn Metro - Whiting St - Duke St - King St Metro - Old Town Circulator - Braddock Metro	3	DASH	38.8048	-77.0469
+31	Alexandria, VA	DASH:202673	NVCC - King St - King St Metro - Old Town Circulator - Braddock Metro	3	DASH	38.8048	-77.0469
+KST	Alexandria, VA	DASH:37451	King Street Trolley	3	DASH	38.8048	-77.0469
+34	Alexandria, VA	DASH:202676	Lee Center - Potomac Yard	3	DASH	38.8048	-77.0469
+86	College Park, MD	WMATA:7248	College Park	3	Metrobus	38.9794	-76.9378
+83	College Park, MD	WMATA:7246	College Park	3	Metrobus	38.9794	-76.9378
+17	College Park, MD	PGCTBMD:83953	College Park / Ikea / Mount Rainier	3	TheBus	38.9794	-76.9378
+Green	College Park, MD	WMATAS:7379	Metrorail Green Line	1	Metrorail	38.9794	-76.9378
+Camden	College Park, MD	MARCMD:155630	Camden - Washington	2	MARC	38.9794	-76.9378
+204	College Park, MD	MDTAC:156735	Frederick - College Park	3	MTA Commuter Bus	38.9794	-76.9378
+14	College Park, MD	PGCTBMD:83951	Hyattsville Crossing / Metrorail Station	3	TheBus	38.9794	-76.9378
+Green	Fairfax, VA	CUEDC:323745	Green 1	3	CUE	38.8462	-77.3064
+Gold	Fairfax, VA	CUEDC:323746	Gold 1	3	CUE	38.8462	-77.3064
+29K	Fairfax, VA	WMATA:7721	Alexandria-Fairfax	3	Metrobus	38.8462	-77.3064
+17G	Fairfax, VA	WMATA:7677	Kings Park Express	3	Metrobus	38.8462	-77.3064
+1C	Fairfax, VA	WMATA:7694	Fair Oaks-Dunn Loring	3	Metrobus	38.8462	-77.3064
+2B	Fairfax, VA	WMATA:7725	Fair Oaks-Jermantown Road	3	Metrobus	38.8462	-77.3064
+625	Fairfax, VA	FFC:299688	Random Hills - Pender Dr	3	Fairfax Connector	38.8462	-77.3064
+29N	Fairfax, VA	WMATA:7722	Alexandria-Fairfax	3	Metrobus	38.8462	-77.3064
+461	Fairfax, VA	FFC:37765	Vienna-Oakton	3	Fairfax Connector	38.8462	-77.3064
+835	Fairfax, VA	FFC:198872	Braeburn Dr - Pentagon	3	Fairfax Connector	38.8462	-77.3064
+17K	Fairfax, VA	WMATA:7679	Kings Park Express	3	Metrobus	38.8462	-77.3064
+46	Rockville, MD	MTGM:8440	Mont.College-Rockv-Medical Ctr	3	Ride On	39.0840	-77.1528
+301	Rockville, MD	MTGM:105390	Potomac-Rockville	3	Ride On	39.0840	-77.1528
+54	Rockville, MD	MTGM:8447	Rockville-Lakeforest	3	Ride On	39.0840	-77.1528
+63	Rockville, MD	MTGM:8455	Rockville-Shady Grove	3	Ride On	39.0840	-77.1528
+T2	Rockville, MD	WMATA:7389	River Road	3	Metrobus	39.0840	-77.1528
+55	Rockville, MD	MTGM:8448	Rockville-Germantown Transit Ctr	3	Ride On	39.0840	-77.1528
+45	Rockville, MD	MTGM:8439	Rockvregional / Rockvsenior / Twinb	3	Ride On	39.0840	-77.1528
+56	Rockville, MD	MTGM:8449	Rockville-Lakeforest	3	Ride On	39.0840	-77.1528
+47	Rockville, MD	MTGM:8441	Rockville-Mont. Mall-Bethesda	3	Ride On	39.0840	-77.1528
+44	Rockville, MD	MTGM:8438	Twinbrook-Rockville	3	Ride On	39.0840	-77.1528
+55	Gaithersburg, MD	MTGM:8448	Rockville-Germantown Transit Ctr	3	Ride On	39.1434	-77.2014
+59	Gaithersburg, MD	MTGM:8452	Rockville-Montgomery Village	3	Ride On	39.1434	-77.2014
+57	Gaithersburg, MD	MTGM:8450	Shady Grove-Lakeforest	3	Ride On	39.1434	-77.2014
+54	Gaithersburg, MD	MTGM:8447	Rockville-Lakeforest	3	Ride On	39.1434	-77.2014
+101	Gaithersburg, MD	MTGM:113122	Lakeforest-Medical Ctr	3	Ride On	39.1434	-77.2014
+61	Gaithersburg, MD	MTGM:8454	Shady Grove-Germantown Transit	3	Ride On	39.1434	-77.2014
+Brunswick	Gaithersburg, MD	MARCMD:155628	Brunswick - Washington	2	MARC	39.1434	-77.2014
+56	Gaithersburg, MD	MTGM:8449	Rockville-Lakeforest	3	Ride On	39.1434	-77.2014
+58	Gaithersburg, MD	MTGM:8451	Shady Grove-Lakeforest	3	Ride On	39.1434	-77.2014
+71	Gaithersburg, MD	MTGM:8461	Shady Grove-Kingsview P & R	3	Ride On	39.1434	-77.2014
+201	Gaithersburg, MD	MDTAC:156578	Gaithersburg - BWI Business Dist	3	MTA Commuter Bus	39.1434	-77.2014
+78	Gaithersburg, MD	MTGM:8465	Shady Grove-Kingsview P & R	3	Ride On	39.1434	-77.2014
+65	Gaithersburg, MD	MTGM:8457	Shady Grove-Mont.Village-Express	3	Ride On	39.1434	-77.2014
+64	Gaithersburg, MD	MTGM:8456	Shady Grove-Montgomery Village	3	Ride On	39.1434	-77.2014
+PINK	Gaithersburg, MD	MTGM:314420	Shady Grove-Traville Tranist	0	Ride On	39.1434	-77.2014
+60	Gaithersburg, MD	MTGM:8453	Shady Grove-Montgomery Village	3	Ride On	39.1434	-77.2014
+74	Gaithersburg, MD	MTGM:8462	Shady Grove-Germantown Transit	3	Ride On	39.1434	-77.2014
+43	Gaithersburg, MD	MTGM:8437	Shady Grove-Traville Transit Ctr	3	Ride On	39.1434	-77.2014
+67	Gaithersburg, MD	MTGM:8459	Shady Grove-Traville Transit Ctr	3	Ride On	39.1434	-77.2014
+LIME	Gaithersburg, MD	MTGM:314419	Shady Grove-Traville Transit	3	Ride On	39.1434	-77.2014
+76	Gaithersburg, MD	MTGM:8464	Shady Grove-Poolesville	3	Ride On	39.1434	-77.2014
+461	Vienna, VA	FFC:37765	Vienna-Oakton	3	Fairfax Connector	38.9010	-77.2659
+463	Vienna, VA	FFC:9247	Maple Avenue - Tysons	3	Fairfax Connector	38.9010	-77.2659
+432	Vienna, VA	FFC:37764	Old Courthouse - Beulah	3	Fairfax Connector	38.9010	-77.2659
+462	Vienna, VA	FFC:9248	Dunn Loring - Navy Federal - Tysons	3	Fairfax Connector	38.9010	-77.2659
+Orange	Vienna, VA	WMATAS:7380	Metrorail Orange Line	1	Metrorail	38.9010	-77.2659
+Gold	Vienna, VA	CUEDC:323746	Gold 1	3	CUE	38.9010	-77.2659
+Green	Vienna, VA	CUEDC:323745	Green 1	3	CUE	38.9010	-77.2659
+1A	Vienna, VA	WMATA:7691	Wilson Blvd	3	Metrobus	38.9010	-77.2659
+29N	Vienna, VA	WMATA:7722	Alexandria-Fairfax	3	Metrobus	38.9010	-77.2659
+2B	Vienna, VA	WMATA:7725	Fair Oaks-Jermantown Road	3	Metrobus	38.9010	-77.2659
+671	Vienna, VA	FFC:299691	Chantilly - Dunn Loring	3	Fairfax Connector	38.9010	-77.2659
+663	Vienna, VA	FFC:299690	Stringfellow Rd. - Vienna	3	Fairfax Connector	38.9010	-77.2659
+660	Vienna, VA	FFC:235395	Centreville PnR - Tysons Exp	3	Fairfax Connector	38.9010	-77.2659
+698	Vienna, VA	FFC:130446	Stringfellow Rd. - Pentagon	3	Fairfax Connector	38.9010	-77.2659
+Silver	Vienna, VA	WMATAS:43779	Metrorail Silver Line	1	Metrorail	38.9010	-77.2659
+402	Vienna, VA	FFC:9283	Backlick - Gallows Rd Southbound	3	Fairfax Connector	38.9010	-77.2659
+401	Vienna, VA	FFC:9282	Backlick - Gallows Rd Northbound	3	Fairfax Connector	38.9010	-77.2659
+1B	Vienna, VA	WMATA:7692	Wilson Blvd	3	Metrobus	38.9010	-77.2659
+2A	Vienna, VA	WMATA:7724	Washington Blvd.-Dunn Loring	3	Metrobus	38.9010	-77.2659
+1C	Vienna, VA	WMATA:7694	Fair Oaks-Dunn Loring	3	Metrobus	38.9010	-77.2659
+427	Vienna, VA	FFC:299686	Spring Hill Metro - Farm Credit	3	Fairfax Connector	38.9010	-77.2659
+574	Vienna, VA	FFC:9288	Reston Town Center - Tysons	3	Fairfax Connector	38.9010	-77.2659
+559	Reston, VA	FFC:37768	Reston TC - Wiehle	3	Fairfax Connector	38.9587	-77.3570
+552	Reston, VA	FFC:9289	Innovation Center - Wiehle Reston E	3	Fairfax Connector	38.9587	-77.3570
+574	Reston, VA	FFC:9288	Reston Town Center - Tysons	3	Fairfax Connector	38.9587	-77.3570
+RIBS 4	Reston, VA	FFC:119984	Reston Town Center - North Point	3	Fairfax Connector	38.9587	-77.3570
+RIBS 2	Reston, VA	FFC:119982	Reston - South Lakes - Herndon M	3	Fairfax Connector	38.9587	-77.3570
+RIBS 5	Reston, VA	FFC:119985	Herndon - Reston Town Center	3	Fairfax Connector	38.9587	-77.3570
+950	Reston, VA	FFC:9302	Herndon Metro - Reston Town Center	3	Fairfax Connector	38.9587	-77.3570
+605	Reston, VA	FFC:9297	Reston - Monument Dr.	3	Fairfax Connector	38.9587	-77.3570
+RIBS 1	Reston, VA	FFC:119981	Lake Anne - Hunters Woods	3	Fairfax Connector	38.9587	-77.3570
+RIBS 3	Reston, VA	FFC:119983	Hunters Woods - Lake Anne	3	Fairfax Connector	38.9587	-77.3570
+952	Reston, VA	FFC:9303	Sunset Hills	3	Fairfax Connector	38.9587	-77.3570
+11	Greenbelt, MD	PGCTBMD:83948	Greenbelt Metrorail Station	3	TheBus	39.0025	-76.8842
+G14	Greenbelt, MD	WMATA:7319	Greenbelt Rd - Good Luck Rd	3	Metrobus	39.0025	-76.8842
+G12	Greenbelt, MD	WMATA:7317	Greenbelt-New Carrollton	3	Metrobus	39.0025	-76.8842
+16	Greenbelt, MD	PGCTBMD:83952	Greenbelt / New Carrollton	3	TheBus	39.0025	-76.8842
+89M	Greenbelt, MD	WMATA:7656	Laurel	3	Metrobus	39.0025	-76.8842
+15x	Greenbelt, MD	PGCTBMD:220932	New Carrollton / Greenbelt Express	3	TheBus	39.0025	-76.8842
+R12	Greenbelt, MD	WMATA:7373	Kenilworth Avenue	3	Metrobus	39.0025	-76.8842
+302	Greenbelt, MD	RTACMMD:114181	Greenbelt Metro Station	3	RTA of Central Maryland	39.0025	-76.8842
+86	Hyattsville, MD	WMATA:7248	College Park	3	Metrobus	38.9677	-76.9500
+F8	Hyattsville, MD	WMATA:7316	Langley Park-Cheverly	3	Metrobus	38.9677	-76.9500
+13A	Hyattsville, MD	PGCTBMD:207411	West Hyattsville Metrorail Station	3	TheBus	38.9677	-76.9500
+19	Hyattsville, MD	PGCTBMD:207412	W Hyattsville Chillum / Prince Georges Plaza Metrorail Sta	3	TheBus	38.9677	-76.9500
+F4	Hyattsville, MD	WMATA:7314	New Carrollton-Silver Spring Ln	3	Metrobus	38.9677	-76.9500
+14	Hyattsville, MD	PGCTBMD:83951	Hyattsville Crossing / Metrorail Station	3	TheBus	38.9677	-76.9500
+R4	Hyattsville, MD	WMATA:7376	Queens Chapel Road	3	Metrobus	38.9677	-76.9500
+C4	Hyattsville, MD	WMATA:7293	Greenbelt-Twinbrook	3	Metrobus	38.9677	-76.9500
+F6	Hyattsville, MD	WMATA:7315	New Carrollton-Fort Totten	3	Metrobus	38.9677	-76.9500
+18	Hyattsville, MD	PGCTBMD:83954	Langley Park / Addison Road Metro	3	TheBus	38.9677	-76.9500
+409	Laurel, MD	RTACMMD:54446	Elkridge Corners	3	RTA of Central Maryland	39.0995	-76.8482
+61	Laurel, MD	PGCTBMD:297291	Towne Ctr Laurel / S Laurel P&R / Laurel Regional Hosp / Greenbelt Metrorail Sta	3	TheBus	39.0995	-76.8482
+301	Laurel, MD	RTACMMD:114180	South Laurel	3	RTA of Central Maryland	39.0995	-76.8482
+89M	Laurel, MD	WMATA:7656	Laurel	3	Metrobus	39.0995	-76.8482
+502	Laurel, MD	RTACMMD:114178	Laurel / Arundel Mills	3	RTA of Central Maryland	39.0995	-76.8482
+Camden	Laurel, MD	MARCMD:155630	Camden - Washington	2	MARC	39.0995	-76.8482
+503	Laurel, MD	RTACMMD:114184	Laurel / Columbia	3	RTA of Central Maryland	39.0995	-76.8482
+302	Laurel, MD	RTACMMD:114181	Greenbelt Metro Station	3	RTA of Central Maryland	39.0995	-76.8482
+Z7	Laurel, MD	WMATA:73780	Laurel-Burtonsville Express	3	Metrobus	39.0995	-76.8482
+17	Silver Spring Metro, MD	MTGM:8415	Silver Spring-Langley Park	3	Ride On	38.9905	-77.0258
+F4	Silver Spring Metro, MD	WMATA:7314	New Carrollton-Silver Spring Ln	3	Metrobus	38.9905	-77.0258
+16	Silver Spring Metro, MD	MTGM:8414	Silver Spring-Takoma	3	Ride On	38.9905	-77.0258
+70	Silver Spring Metro, MD	WMATA:7239	Georgia Avenue-7th Street	3	Metrobus	38.9905	-77.0258
+28	Silver Spring Metro, MD	MTGM:8425	Free-Silver Spring Vango Shuttle	3	Ride On	38.9905	-77.0258
+Red	Silver Spring Metro, MD	WMATAS:7381	Metrorail Red Line	1	Metrorail	38.9905	-77.0258
+18	Silver Spring Metro, MD	MTGM:8416	Silver Spring - Takoma - Langley	3	Ride On	38.9905	-77.0258
+20	Silver Spring Metro, MD	MTGM:8418	Silver Spring-Hillandale	3	Ride On	38.9905	-77.0258
+15	Silver Spring Metro, MD	MTGM:8413	Silver Spring-Langley Park	3	Ride On	38.9905	-77.0258
+19	Silver Spring Metro, MD	MTGM:8417	Silver Spring-Northwood	3	Ride On	38.9905	-77.0258
+79	Silver Spring Metro, MD	WMATA:7241	Georgia Avenue Metroextra	3	Metrobus	38.9905	-77.0258
+Y2	Silver Spring Metro, MD	WMATA:36445	Georgia Ave-Maryland	3	Metrobus	38.9905	-77.0258
+Y7	Silver Spring Metro, MD	WMATA:7418	Georgia Ave-Maryland	3	Metrobus	38.9905	-77.0258
+Q4	Silver Spring Metro, MD	WMATA:7368	Veirs Mill Road	3	Metrobus	38.9905	-77.0258
+Y8	Silver Spring Metro, MD	WMATA:7419	Georgia Ave-Maryland	3	Metrobus	38.9905	-77.0258
+14	Silver Spring Metro, MD	MTGM:8412	Silver Spring-Takoma	3	Ride On	38.9905	-77.0258
+12	Silver Spring Metro, MD	MTGM:8410	Silver Spring-Takoma	3	Ride On	38.9905	-77.0258
+13	Silver Spring Metro, MD	MTGM:8411	Silver Spring-Takoma	3	Ride On	38.9905	-77.0258
+Brunswick	Silver Spring Metro, MD	MARCMD:155628	Brunswick - Washington	2	MARC	38.9905	-77.0258
+S9	Silver Spring Metro, MD	WMATA:7386	16th Street Metroextra	3	Metrobus	38.9905	-77.0258
+S2	Silver Spring Metro, MD	WMATA:7384	16th Street	3	Metrobus	38.9905	-77.0258
+22	Silver Spring Metro, MD	MTGM:8420	Silver Spring-Hillandale	3	Ride On	38.9905	-77.0258
+21	Silver Spring Metro, MD	MTGM:8419	Silver Spring-Briggs Chaney P&R	3	Ride On	38.9905	-77.0258
+Z7	Silver Spring Metro, MD	WMATA:73780	Laurel-Burtonsville Express	3	Metrobus	38.9905	-77.0258
+5	Silver Spring Metro, MD	MTGM:8403	Silver Spring-Twinbrook Station	3	Ride On	38.9905	-77.0258
+4	Silver Spring Metro, MD	MTGM:8402	Silver Spring-Wheaton	3	Ride On	38.9905	-77.0258
+2	Silver Spring Metro, MD	MTGM:8400	Silver Spring-Lyttonsville	3	Ride On	38.9905	-77.0258
+1	Silver Spring Metro, MD	MTGM:8399	Silver Spring-Friendship Heights	3	Ride On	38.9905	-77.0258
+J2	Silver Spring Metro, MD	WMATA:7337	Bethesda-Silver Spring	3	Metrobus	38.9905	-77.0258
+Z8	Silver Spring Metro, MD	WMATA:7426	Silver Spring-Fairland	3	Metrobus	38.9905	-77.0258
+9	Silver Spring Metro, MD	MTGM:8407	Silver Spring-Wheaton	3	Ride On	38.9905	-77.0258
+8	Silver Spring Metro, MD	MTGM:8406	Silver Spring-Wheaton	3	Ride On	38.9905	-77.0258
+Z6	Silver Spring Metro, MD	WMATA:7425	Silver Spring-Fairland	3	Metrobus	38.9905	-77.0258
+Z2	Silver Spring Metro, MD	WMATA:7423	Colesville - Ashton	3	Metrobus	38.9905	-77.0258
+Blue	Silver Spring Metro, MD	MTGM:198880	Flash Blue	3	Ride On	38.9905	-77.0258
+Orange	Silver Spring Metro, MD	MTGM:198881	Flash Orange	3	Ride On	38.9905	-77.0258
+325	Silver Spring Metro, MD	MDTAC:156591	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.9905	-77.0258
+315	Silver Spring Metro, MD	MDTAC:156589	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.9905	-77.0258
+305	Silver Spring Metro, MD	MDTAC:156587	Columbia & Silver Spring - DC	3	MTA Commuter Bus	38.9905	-77.0258
+642	Chantilly, VA	FFC:9260	Aubrey Patent - Westfields	3	Fairfax Connector	38.8797	-77.4445
+651	Chantilly, VA	FFC:9261	Chantilly - Monument Dt.	3	Fairfax Connector	38.8797	-77.4445
+901	Chantilly, VA	FFC:220969	Herndon Metro - Centreville	3	Fairfax Connector	38.8797	-77.4445
+671	Chantilly, VA	FFC:299691	Chantilly - Dunn Loring	3	Fairfax Connector	38.8797	-77.4445
+615	Chantilly, VA	FFC:220968	Monument Dr. - Fair Oaks Hosp	3	Fairfax Connector	38.8797	-77.4445
+J1	Bethesda Metro, MD	WMATA:7333	Bethesda-Silver Spring	3	Metrobus	39.0037	-77.0981
+70	Bethesda Metro, MD	MTGM:8460	Germantown-Bethesda Express	3	Ride On	39.0037	-77.0981
+46	Bethesda Metro, MD	MTGM:8440	Mont.College-Rockv-Medical Ctr	3	Ride On	39.0037	-77.0981
+34	Bethesda Metro, MD	MTGM:8431	Aspen Hill-Friendship Heights	3	Ride On	39.0037	-77.0981
+J2	Bethesda Metro, MD	WMATA:7337	Bethesda-Silver Spring	3	Metrobus	39.0037	-77.0981
+30	Bethesda Metro, MD	MTGM:8427	Bethesda-Medical Center	3	Ride On	39.0037	-77.0981
+Red	Bethesda Metro, MD	WMATAS:7381	Metrorail Red Line	1	Metrorail	39.0037	-77.0981
+203	Bethesda Metro, MD	MDTAC:156579	Columbia - Bethesda	3	MTA Commuter Bus	39.0037	-77.0981
+798	Bethesda Metro, MD	FFC:316187	Tyrons - Bethesda	3	Fairfax Connector	39.0037	-77.0981
+101	Bethesda Metro, MD	MTGM:113122	Lakeforest-Medical Ctr	3	Ride On	39.0037	-77.0981
+33	Bethesda Metro, MD	MTGM:8430	Glenmont-Medical Center	3	Ride On	39.0037	-77.0981
+28A	Falls Church, VA	WMATA:7711	Leesburg Pike	3	Metrobus	38.8844	-77.1734
+803	Falls Church, VA	FFC:198871	Annandale Road	3	Fairfax Connector	38.8844	-77.1734
+2A	Falls Church, VA	WMATA:7724	Washington Blvd.-Dunn Loring	3	Metrobus	38.8844	-77.1734
+Orange	Falls Church, VA	WMATAS:7380	Metrorail Orange Line	1	Metrorail	38.8844	-77.1734
+Silver	Falls Church, VA	WMATAS:43779	Metrorail Silver Line	1	Metrorail	38.8844	-77.1734
+715	Falls Church, VA	FFC:198868	East Falls Church - Langley	3	Fairfax Connector	38.8844	-77.1734
+3F	Falls Church, VA	WMATA:208054	Langston Blvd - McPherson Sq L	3	Metrobus	38.8844	-77.1734
+26A	Falls Church, VA	WMATA:14846	Annandale-East Falls Church	3	Metrobus	38.8844	-77.1734
+52	Falls Church, VA	ART:8378	Ballston-VA Hosp-E Flls Chrch	3	ART	38.8844	-77.1734
+55	Falls Church, VA	ART:61106	Rosslyn-East Falls Church	3	ART	38.8844	-77.1734
+1A	Falls Church, VA	WMATA:7691	Wilson Blvd	3	Metrobus	38.8844	-77.1734
+1B	Falls Church, VA	WMATA:7692	Wilson Blvd	3	Metrobus	38.8844	-77.1734
+T18	Landover, MD	WMATA:7388	Annapolis Road	3	Metrobus	38.9534	-76.8950
+F13	Landover, MD	WMATA:7311	Cheverly-Washington Bus Park Ln	3	Metrobus	38.9534	-76.8950
+F6	Landover, MD	WMATA:7315	New Carrollton-Fort Totten	3	Metrobus	38.9534	-76.8950
+T14	Landover, MD	WMATA:36444	Rhode Island Ave-New Carrollton	3	Metrobus	38.9534	-76.8950
+F4	Landover, MD	WMATA:7314	New Carrollton-Silver Spring Ln	3	Metrobus	38.9534	-76.8950
+14	Landover, MD	PGCTBMD:83951	Hyattsville Crossing / Metrorail Station	3	TheBus	38.9534	-76.8950
+L12	Landover, MD	WMATA:248012	Landover Rd	3	Metrobus	38.9534	-76.8950
+G14	Landover, MD	WMATA:7319	Greenbelt Rd - Good Luck Rd	3	Metrobus	38.9534	-76.8950
+B24	Landover, MD	WMATA:7275	Bowie-Belair	3	Metrobus	38.9534	-76.8950
+B27	Landover, MD	WMATA:7277	Bowie-New Carrollton	3	Metrobus	38.9534	-76.8950
+G12	Landover, MD	WMATA:7317	Greenbelt-New Carrollton	3	Metrobus	38.9534	-76.8950
+15x	Landover, MD	PGCTBMD:220932	New Carrollton / Greenbelt Express	3	TheBus	38.9534	-76.8950
+16	Landover, MD	PGCTBMD:83952	Greenbelt / New Carrollton	3	TheBus	38.9534	-76.8950
+721	Mclean, VA	FFC:37770	Chain Bridge Road - McLean	3	Fairfax Connector	38.9330	-77.1797
+715	Mclean, VA	FFC:198868	East Falls Church - Langley	3	Fairfax Connector	38.9330	-77.1797
+23T	Mclean, VA	WMATA:33902	McLean-Crystal City	3	Metrobus	38.9330	-77.1797
+427	Mclean, VA	FFC:299686	Spring Hill Metro - Farm Credit	3	Fairfax Connector	38.9330	-77.1797
+432	Mclean, VA	FFC:37764	Old Courthouse - Beulah	3	Fairfax Connector	38.9330	-77.1797
+703	Mclean, VA	FFC:198870	Pimmit Hills	3	Fairfax Connector	38.9330	-77.1797
+Silver	Mclean, VA	WMATAS:43779	Metrorail Silver Line	1	Metrorail	38.9330	-77.1797
+722	Mclean, VA	FFC:171780	McLean - Langley	3	Fairfax Connector	38.9330	-77.1797
+480	Mclean, VA	FFC:103569	Wolf Trap Special Shuttle	3	Fairfax Connector	38.9330	-77.1797
+Orange	Mclean, VA	WMATAS:7380	Metrorail Orange Line	1	Metrorail	38.9330	-77.1797
+798	Mclean, VA	FFC:316187	Tyrons - Bethesda	3	Fairfax Connector	38.9330	-77.1797
+423	Mclean, VA	FFC:37762	Tysons Circulator - Westpark	3	Fairfax Connector	38.9330	-77.1797
+660	Mclean, VA	FFC:235395	Centreville PnR - Tysons Exp	3	Fairfax Connector	38.9330	-77.1797
+494	Mclean, VA	FFC:13483	Springfield - Tysons	3	Fairfax Connector	38.9330	-77.1797
+495	Mclean, VA	FFC:10023	Burke Center VRE - Tysons	3	Fairfax Connector	38.9330	-77.1797
+28A	Mclean, VA	WMATA:7711	Leesburg Pike	3	Metrobus	38.9330	-77.1797
+463	Mclean, VA	FFC:9247	Maple Avenue - Tysons	3	Fairfax Connector	38.9330	-77.1797

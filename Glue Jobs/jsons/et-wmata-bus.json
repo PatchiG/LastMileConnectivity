@@ -1,0 +1,173 @@
+{
+	"jobConfig": {
+		"name": "et-wmata-bus",
+		"description": "",
+		"role": "arn:aws:iam::463470950584:role/etl-last-mile-role",
+		"command": "glueetl",
+		"version": "5.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 0,
+		"timeout": 480,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "et-wmata-bus.py",
+		"scriptLocation": "s3://aws-glue-assets-463470950584-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-12-05T07:30:58.106Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-463470950584-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1733383772275": {
+			"nodeId": "node-1733383772275",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733383772275",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "lastmile-db",
+			"table": "bus_wmata",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1733384171324": {
+			"nodeId": "node-1733384171324",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733384035916"
+			],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733384171324",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "glueparquet",
+			"compression": "snappy",
+			"path": "s3://last-mile-data-transformed/wmata-bus-transformed/",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null,
+				"database": null,
+				"table": null
+			},
+			"updateCatalogOptions": "none",
+			"autoDataQuality": {
+				"isEnabled": true,
+				"evaluationContext": "EvaluateDataQuality_node1733383746579"
+			},
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383787590": {
+			"nodeId": "node-1733383787590",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383772275"
+			],
+			"name": "Evaluate Data Quality",
+			"generatedNodeName": "EvaluateDataQuality_node1733383787590",
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"ruleset": "Rules = [\n    # Completeness Checks\n    IsComplete \"route\",                        # Ensures `route` is not null\n    IsComplete \"average of weekday\",           # Ensures `average of weekday` is not null\n    IsComplete \"average of saturday\",          # Ensures `average of saturday` is not null\n    IsComplete \"average of sunday\",            # Ensures `average of sunday` is not null\n    IsComplete \"average ridership\",            # Ensures `average ridership` is not null\n\n    # Uniqueness Checks\n    IsUnique \"route\",                          # Ensures `route` is unique across records\n\n    # Numeric Type Validation (Double)\n    ColumnDataType \"average of weekday\" = \"double\",    # Validates `average of weekday` is of type double\n    ColumnDataType \"average of saturday\" = \"double\",   # Validates `average of saturday` is of type double\n    ColumnDataType \"average of sunday\" = \"double\",     # Validates `average of sunday` is of type double\n    ColumnDataType \"average ridership\" = \"double\",     # Validates `average ridership` is of type double\n\n    # Column Count Validation\n    ColumnCount = 5.0                     # Ensures dataset has exactly 5 columns\n]\n",
+			"output": "EvaluationResults",
+			"publishingOptions": {
+				"evaluationContext": null,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": "",
+				"resultsPublishingEnabled": true
+			},
+			"stopJobOnFailureOptions": {
+				"stopJobOnFailureTiming": null
+			},
+			"additionalOptions": {
+				"performanceTuning.caching": "CACHE_NOTHING"
+			},
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733383853684": {
+			"nodeId": "node-1733383853684",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383787590"
+			],
+			"name": "originalData",
+			"generatedNodeName": "originalData_node1733383853684",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733384035916": {
+			"nodeId": "node-1733384035916",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383853684"
+			],
+			"name": "Drop Duplicates",
+			"generatedNodeName": "DropDuplicates_node1733384035916",
+			"classification": "Transform",
+			"type": "DropDuplicates",
+			"parentsValid": true,
+			"calculatedType": "",
+			"columns": [],
+			"codeGenVersion": 2
+		},
+		"node-1733383854306": {
+			"nodeId": "node-1733383854306",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733383787590"
+			],
+			"name": "ruleOutcomes",
+			"generatedNodeName": "ruleOutcomes_node1733383854306",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}

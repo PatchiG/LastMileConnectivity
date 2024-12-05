@@ -1,0 +1,770 @@
+{
+	"dag": {
+		"node-1733381435222": {
+			"database": "lastmile-db",
+			"table": "shared_mobility",
+			"runtimeParameters": [],
+			"isCatalog": true,
+			"name": "Amazon S3",
+			"classification": "DataSource",
+			"type": "S3",
+			"inputs": [],
+			"generatedNodeName": "AmazonS3_node1733381435222",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "title",
+						"fullPath": [
+							"title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "subtitle",
+						"fullPath": [
+							"subtitle"
+						],
+						"type": "string"
+					},
+					{
+						"key": "id",
+						"fullPath": [
+							"id"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkname",
+						"fullPath": [
+							"networkname"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkid",
+						"fullPath": [
+							"networkid"
+						],
+						"type": "long"
+					},
+					{
+						"key": "color",
+						"fullPath": [
+							"color"
+						],
+						"type": "string"
+					},
+					{
+						"key": "textcolor",
+						"fullPath": [
+							"textcolor"
+						],
+						"type": "string"
+					},
+					{
+						"key": "latitude",
+						"fullPath": [
+							"latitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "longitude",
+						"fullPath": [
+							"longitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string"
+					},
+					{
+						"key": "location",
+						"fullPath": [
+							"location"
+						],
+						"type": "string"
+					},
+					{
+						"key": "bike_count",
+						"fullPath": [
+							"bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "electric_bike_count",
+						"fullPath": [
+							"electric_bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "dock_count",
+						"fullPath": [
+							"dock_count"
+						],
+						"type": "long"
+					}
+				]
+			]
+		},
+		"node-1733381481140": {
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"name": "Evaluate Data Quality",
+			"inputs": [
+				"node-1733381435222"
+			],
+			"ruleset": "Rules = [\n    # Completeness Checks\n    IsComplete \"title\",            # Ensures `title` is not null\n    IsComplete \"id\",               # Ensures `id` is not null\n    IsComplete \"networkname\",      # Ensures `networkname` is not null\n    IsComplete \"networkid\",        # Ensures `networkid` is not null\n    IsComplete \"latitude\",         # Ensures `latitude` is not null\n    IsComplete \"longitude\",        # Ensures `longitude` is not null\n    IsComplete \"type\",             # Ensures `type` is not null\n    IsComplete \"location\",         # Ensures `location` is not null\n\n    # Uniqueness Checks\n    IsUnique \"id\",                 # Ensures `id` is unique across records\n\n    # Data Type Validation\n    \n    ColumnDataType \"networkid\" = \"long\",\n    ColumnDataType \"latitude\" = \"double\",\n    ColumnDataType \"longitude\" = \"double\",\n    ColumnDataType \"bike_count\" = \"long\",\n    ColumnDataType \"electric_bike_count\" = \"long\",\n    ColumnDataType \"dock_count\" = \"long\",\n\n    # Column Count Validation\n    ColumnCount between 10 and 20   # Ensures dataset has between 10 and 20 columns\n]\n",
+			"publishingOptions": {
+				"resultsPublishingEnabled": true,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": ""
+			},
+			"stopJobOnFailureOptions": {},
+			"additionalOptions": {
+				"performanceTuning.caching": "CACHE_NOTHING"
+			},
+			"iconUrl": "https://a.b.cdn.console.awsstatic.com/a/v1/EWYFC54JJEYKZJL24AKV7KIO3L377AKQELVTSDYKGKQMTNPC6HAQ/static/media/Data-quality.30e03756.svg",
+			"generatedNodeName": "EvaluateDataQuality_node1733381481140",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "Rule",
+						"fullPath": [
+							"Rule"
+						],
+						"type": "string"
+					},
+					{
+						"key": "Outcome",
+						"fullPath": [
+							"Outcome"
+						],
+						"type": "string"
+					},
+					{
+						"key": "FailureReason",
+						"fullPath": [
+							"FailureReason"
+						],
+						"type": "string"
+					},
+					{
+						"key": "EvaluatedMetrics",
+						"fullPath": [
+							"EvaluatedMetrics"
+						],
+						"type": "object",
+						"children": [
+							{
+								"key": "string",
+								"fullPath": [
+									"EvaluatedMetrics",
+									"string"
+								],
+								"type": "double"
+							}
+						]
+					},
+					{
+						"key": "EvaluatedRule",
+						"fullPath": [
+							"EvaluatedRule"
+						],
+						"type": "string"
+					}
+				],
+				[
+					{
+						"key": "title",
+						"fullPath": [
+							"title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "subtitle",
+						"fullPath": [
+							"subtitle"
+						],
+						"type": "string"
+					},
+					{
+						"key": "id",
+						"fullPath": [
+							"id"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkname",
+						"fullPath": [
+							"networkname"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkid",
+						"fullPath": [
+							"networkid"
+						],
+						"type": "long"
+					},
+					{
+						"key": "color",
+						"fullPath": [
+							"color"
+						],
+						"type": "string"
+					},
+					{
+						"key": "textcolor",
+						"fullPath": [
+							"textcolor"
+						],
+						"type": "string"
+					},
+					{
+						"key": "latitude",
+						"fullPath": [
+							"latitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "longitude",
+						"fullPath": [
+							"longitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string"
+					},
+					{
+						"key": "location",
+						"fullPath": [
+							"location"
+						],
+						"type": "string"
+					},
+					{
+						"key": "bike_count",
+						"fullPath": [
+							"bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "electric_bike_count",
+						"fullPath": [
+							"electric_bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "dock_count",
+						"fullPath": [
+							"dock_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "DataQualityRulesPass",
+						"fullPath": [
+							"DataQualityRulesPass"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesFail",
+						"fullPath": [
+							"DataQualityRulesFail"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityRulesSkip",
+						"fullPath": [
+							"DataQualityRulesSkip"
+						],
+						"type": "string array"
+					},
+					{
+						"key": "DataQualityEvaluationResult",
+						"fullPath": [
+							"DataQualityEvaluationResult"
+						],
+						"type": "string"
+					}
+				],
+				[
+					{
+						"key": "title",
+						"fullPath": [
+							"title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "subtitle",
+						"fullPath": [
+							"subtitle"
+						],
+						"type": "string"
+					},
+					{
+						"key": "id",
+						"fullPath": [
+							"id"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkname",
+						"fullPath": [
+							"networkname"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkid",
+						"fullPath": [
+							"networkid"
+						],
+						"type": "long"
+					},
+					{
+						"key": "color",
+						"fullPath": [
+							"color"
+						],
+						"type": "string"
+					},
+					{
+						"key": "textcolor",
+						"fullPath": [
+							"textcolor"
+						],
+						"type": "string"
+					},
+					{
+						"key": "latitude",
+						"fullPath": [
+							"latitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "longitude",
+						"fullPath": [
+							"longitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string"
+					},
+					{
+						"key": "location",
+						"fullPath": [
+							"location"
+						],
+						"type": "string"
+					},
+					{
+						"key": "bike_count",
+						"fullPath": [
+							"bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "electric_bike_count",
+						"fullPath": [
+							"electric_bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "dock_count",
+						"fullPath": [
+							"dock_count"
+						],
+						"type": "long"
+					}
+				]
+			]
+		},
+		"node-1733381622381": {
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"name": "ruleOutcomes",
+			"index": 0,
+			"inputs": [
+				"node-1733381481140"
+			],
+			"generatedNodeName": "ruleOutcomes_node1733381622381",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "Rule",
+						"fullPath": [
+							"Rule"
+						],
+						"type": "string"
+					},
+					{
+						"key": "Outcome",
+						"fullPath": [
+							"Outcome"
+						],
+						"type": "string"
+					},
+					{
+						"key": "FailureReason",
+						"fullPath": [
+							"FailureReason"
+						],
+						"type": "string"
+					},
+					{
+						"key": "EvaluatedMetrics",
+						"fullPath": [
+							"EvaluatedMetrics"
+						],
+						"type": "object",
+						"children": [
+							{
+								"key": "string",
+								"fullPath": [
+									"EvaluatedMetrics",
+									"string"
+								],
+								"type": "double"
+							}
+						]
+					},
+					{
+						"key": "EvaluatedRule",
+						"fullPath": [
+							"EvaluatedRule"
+						],
+						"type": "string"
+					}
+				]
+			]
+		},
+		"node-1733382475510": {
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"name": "originalData",
+			"index": 0,
+			"inputs": [
+				"node-1733381481140"
+			],
+			"generatedNodeName": "originalData_node1733382475510",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "title",
+						"fullPath": [
+							"title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "subtitle",
+						"fullPath": [
+							"subtitle"
+						],
+						"type": "string"
+					},
+					{
+						"key": "id",
+						"fullPath": [
+							"id"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkname",
+						"fullPath": [
+							"networkname"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkid",
+						"fullPath": [
+							"networkid"
+						],
+						"type": "long"
+					},
+					{
+						"key": "color",
+						"fullPath": [
+							"color"
+						],
+						"type": "string"
+					},
+					{
+						"key": "textcolor",
+						"fullPath": [
+							"textcolor"
+						],
+						"type": "string"
+					},
+					{
+						"key": "latitude",
+						"fullPath": [
+							"latitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "longitude",
+						"fullPath": [
+							"longitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string"
+					},
+					{
+						"key": "location",
+						"fullPath": [
+							"location"
+						],
+						"type": "string"
+					},
+					{
+						"key": "bike_count",
+						"fullPath": [
+							"bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "electric_bike_count",
+						"fullPath": [
+							"electric_bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "dock_count",
+						"fullPath": [
+							"dock_count"
+						],
+						"type": "long"
+					}
+				]
+			]
+		},
+		"node-1733382558975": {
+			"classification": "Transform",
+			"type": "DropFields",
+			"name": "Drop Fields",
+			"inputs": [
+				"node-1733382475510"
+			],
+			"paths": [
+				"textcolor",
+				"color"
+			],
+			"iconUrl": "https://a.b.cdn.console.awsstatic.com/a/v1/EWYFC54JJEYKZJL24AKV7KIO3L377AKQELVTSDYKGKQMTNPC6HAQ/static/media/Drop-fields.99017dd5.svg",
+			"generatedNodeName": "DropFields_node1733382558975",
+			"codeGenVersion": 2
+		},
+		"node-1733382573255": {
+			"classification": "Transform",
+			"type": "DropDuplicates",
+			"name": "Drop Duplicates",
+			"inputs": [
+				"node-1733382558975"
+			],
+			"columns": [
+				"id"
+			],
+			"iconUrl": "https://a.b.cdn.console.awsstatic.com/a/v1/EWYFC54JJEYKZJL24AKV7KIO3L377AKQELVTSDYKGKQMTNPC6HAQ/static/media/Drop-duplicates.39c0b99b.svg",
+			"generatedNodeName": "DropDuplicates_node1733382573255",
+			"codeGenVersion": 2,
+			"outputSchemas": [
+				[
+					{
+						"key": "title",
+						"fullPath": [
+							"title"
+						],
+						"type": "string"
+					},
+					{
+						"key": "subtitle",
+						"fullPath": [
+							"subtitle"
+						],
+						"type": "string"
+					},
+					{
+						"key": "id",
+						"fullPath": [
+							"id"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkname",
+						"fullPath": [
+							"networkname"
+						],
+						"type": "string"
+					},
+					{
+						"key": "networkid",
+						"fullPath": [
+							"networkid"
+						],
+						"type": "long"
+					},
+					{
+						"key": "latitude",
+						"fullPath": [
+							"latitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "longitude",
+						"fullPath": [
+							"longitude"
+						],
+						"type": "double"
+					},
+					{
+						"key": "type",
+						"fullPath": [
+							"type"
+						],
+						"type": "string"
+					},
+					{
+						"key": "location",
+						"fullPath": [
+							"location"
+						],
+						"type": "string"
+					},
+					{
+						"key": "bike_count",
+						"fullPath": [
+							"bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "electric_bike_count",
+						"fullPath": [
+							"electric_bike_count"
+						],
+						"type": "long"
+					},
+					{
+						"key": "dock_count",
+						"fullPath": [
+							"dock_count"
+						],
+						"type": "long"
+					}
+				]
+			]
+		},
+		"node-1733382719634": {
+			"classification": "DataSink",
+			"type": "S3",
+			"name": "Amazon S3",
+			"inputs": [
+				"node-1733382573255"
+			],
+			"format": "glueparquet",
+			"compression": "snappy",
+			"path": "s3://last-mile-data-transformed",
+			"partitionKeys": [],
+			"updateCatalogOptions": "none",
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false
+			},
+			"autoDataQuality": {
+				"isEnabled": true,
+				"evaluationContext": "EvaluateDataQuality_node1733381410148"
+			},
+			"additionalOptions": {},
+			"iconUrl": "https://a.b.cdn.console.awsstatic.com/a/v1/EWYFC54JJEYKZJL24AKV7KIO3L377AKQELVTSDYKGKQMTNPC6HAQ/static/media/s3.2a166713.svg",
+			"generatedNodeName": "AmazonS3_node1733382719634",
+			"codeGenVersion": 2
+		}
+	},
+	"jobConfig": {
+		"command": "glueetl",
+		"description": "",
+		"role": "arn:aws:iam::463470950584:role/etl-last-mile-role",
+		"scriptName": "et-shared-mobility.py",
+		"version": "5.0",
+		"language": "python-3",
+		"scriptLocation": "s3://aws-glue-assets-463470950584-us-east-1/scripts/",
+		"temporaryDirectory": "s3://aws-glue-assets-463470950584-us-east-1/temporary/",
+		"timeout": 480,
+		"maxConcurrentRuns": 1,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxRetries": 0,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"security": "none",
+		"bookmark": "job-bookmark-disable",
+		"logging": true,
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"sparkPath": "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+		"serverEncryption": false,
+		"glueHiveMetastore": true,
+		"etlAutoScaling": false,
+		"etlAutoTuning": true,
+		"jobParameters": [],
+		"tags": [],
+		"connectionsList": [],
+		"jobMode": "VISUAL_MODE",
+		"name": "et-shared-mobility",
+		"pythonPath": "",
+		"sourceControlDetails": {
+			"Provider": "GITHUB",
+			"Repository": "LastMileConnectivity",
+			"Branch": "develop",
+			"Folder": "Glue Jobs"
+		}
+	},
+	"hasBeenSaved": false
+}

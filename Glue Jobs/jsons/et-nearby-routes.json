@@ -1,0 +1,111 @@
+{
+	"jobConfig": {
+		"name": "et-nearby-routes",
+		"description": "",
+		"role": "arn:aws:iam::463470950584:role/etl-last-mile-role",
+		"command": "glueetl",
+		"version": "5.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"jobRunQueuingEnabled": false,
+		"maxRetries": 0,
+		"timeout": 480,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "et-nearby-routes.py",
+		"scriptLocation": "s3://aws-glue-assets-463470950584-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2024-12-05T01:56:48.943Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-463470950584-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null,
+		"maintenanceWindow": null
+	},
+	"dag": {
+		"node-1733363219594": {
+			"nodeId": "node-1733363219594",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733362711616"
+			],
+			"name": "Evaluate Data Quality",
+			"generatedNodeName": "EvaluateDataQuality_node1733363219594",
+			"classification": "Transform",
+			"type": "EvaluateDataQualityMultiFrame",
+			"ruleset": "# Example rules: Completeness \"colA\" between 0.4 and 0.8, ColumnCount > 10\nRules = [\n     IsComplete \"route_short_name\",\n    IsComplete \"location\",\n    IsComplete \"global_route_id\",\n    IsComplete \"route_long_name\",\n    IsComplete \"route_type\",\n    IsComplete \"network_name\",\n    IsComplete \"latitudes\",\n    IsComplete \"longitudes\",\n\n    # Uniqueness Check\n    IsUnique \"global_route_id\",\n\n    # Data Type Validation\n    IsType \"route_short_name\" \"string\",\n    IsType \"location\" \"string\",\n    IsType \"global_route_id\" \"string\",\n    IsType \"route_long_name\" \"string\",\n    IsType \"route_type\" \"long\",\n    IsType \"network_name\" \"string\",\n    IsType \"latitudes\" \"double\",\n    IsType \"longitudes\" \"double\",\n\n    # Valid Value Range Checks\n    IsBetween \"latitudes\" -90.0 90.0,\n    IsBetween \"longitudes\" -180.0 180.0,\n\n    # Consistency Checks\n    MatchesRegex \"route_short_name\" \"[a-zA-Z0-9]+\",\n    MatchesRegex \"global_route_id\" \"[A-Z]+:[0-9]+\",\n\n    # Validity Checks\n    IsIn \"route_type\" [0, 1, 2, 3, 4, 5], # Assume 0-5 are valid route types\n    IsIn \"network_name\" [\"TheBus\", \"OmniRide\", \"MARC\",\"CUE\",\"Metrobus\",\"Fairfax Connector\",\"Metrorail\",\"ART\",\"DASH\",\"MTA Commuter Bus\",\"Ride On\",\"RTA of Central Maryland\"]\n]",
+			"output": "EvaluationResults",
+			"publishingOptions": {
+				"evaluationContext": null,
+				"cloudWatchMetricsEnabled": true,
+				"resultsS3Prefix": "",
+				"resultsPublishingEnabled": true
+			},
+			"stopJobOnFailureOptions": {
+				"stopJobOnFailureTiming": null
+			},
+			"additionalOptions": {
+				"performanceTuning.caching": "CACHE_NOTHING"
+			},
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1733362711616": {
+			"nodeId": "node-1733362711616",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1733362711616",
+			"classification": "DataSource",
+			"type": "S3",
+			"isCatalog": true,
+			"database": "lastmile-db",
+			"table": "nearby_routes",
+			"partitionPredicate": "",
+			"additionalOptions": {
+				"boundedSize": null,
+				"boundedFiles": null,
+				"boundedOption": null
+			},
+			"calculatedType": "CatalogS3DataSource",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1733363728419": {
+			"nodeId": "node-1733363728419",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1733363219594"
+			],
+			"name": "ruleOutcomes",
+			"generatedNodeName": "ruleOutcomes_node1733363728419",
+			"classification": "Transform",
+			"type": "SelectFromCollection",
+			"index": 0,
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"usageProfileName": null
+}
