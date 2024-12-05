@@ -3,6 +3,11 @@ Addressing last mile connectivity for public transport using  - WMATA (Washingto
 
 ---
 
+## Architecture 
+
+![Architecture](Images/Final Architecture Diagram.png)
+
+
 ## Data Sources
 
 ### 1. **Transit API**
