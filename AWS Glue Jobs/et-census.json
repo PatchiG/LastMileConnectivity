@@ -1,0 +1,41 @@
+{
+  "name" : "et-census",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::463470950584:role/etl-last-mile-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-463470950584-us-east-1/scripts/et-census.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-463470950584-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 2880,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1733342630223\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733342595724\"],\"Name\":\"ruleOutcomes\"}},\"node-1733351338824\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1733344159555\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1733351318625\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://last-mile-data-transformed/us-census-transformed/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1733355964968\":{\"S3CatalogTarget\":{\"Database\":\"lastmile-db\",\"Inputs\":[\"node-1733351318625\"],\"Name\":\"AWS Glue Data Catalog\",\"PartitionKeys\":[],\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false},\"Table\":\"us_census\"}},\"node-1733351318625\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733342595724\"],\"Name\":\"originalData\"}},\"node-1733342595724\":{\"EvaluateDataQualityMultiFrame\":{\"AdditionalDataSources\":{},\"AdditionalOptions\":{\"observations.scope\":\"ALL\",\"performanceTuning.caching\":\"CACHE_NOTHING\"},\"Inputs\":[\"node-1733340279578\"],\"Name\":\"Evaluate Data Quality\",\"PublishingOptions\":{\"CloudWatchMetricsEnabled\":true,\"ResultsPublishingEnabled\":true,\"ResultsS3Prefix\":\"\"},\"Ruleset\":\"# Example rules: Completeness \\\"colA\\\" between 0.4 and 0.8, ColumnCount > 10\\nRules = [\\n    Completeness \\\"label\\\" = 1.0,\\n    ColumnValues \\\"Year\\\" in [ 2022, 2023 ] with threshold > 0.95,\\n    ColumnValues \\\"Level\\\" in [ \\\"National\\\", \\\"State\\\",\\\"County\\\",\\\"Metropolitan\\\" ] with threshold > 0.95,\\n    RowCount > 25,\\n    ColumnCount = 29\\n]\",\"StopJobOnFailureOptions\":{}}},\"node-1733340279578\":{\"S3CatalogSource\":{\"AdditionalOptions\":{},\"Database\":\"lastmile-db\",\"Name\":\"Amazon S3\",\"PartitionPredicate\":\"\",\"Table\":\"us_census\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "LastMileConnectivity",
+    "branch" : "main",
+    "folder" : "AWS Glue Jobs"
+  }
+}
