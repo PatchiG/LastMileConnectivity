@@ -1,0 +1,41 @@
+{
+  "name" : "et-wmata-metro",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::463470950584:role/etl-last-mile-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-463470950584-us-east-1/scripts/et-wmata-metro.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-463470950584-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1733384251989\":{\"EvaluateDataQualityMultiFrame\":{\"AdditionalDataSources\":{},\"AdditionalOptions\":{\"performanceTuning.caching\":\"CACHE_NOTHING\"},\"Inputs\":[\"node-1733384215983\"],\"Name\":\"Evaluate Data Quality\",\"PublishingOptions\":{\"CloudWatchMetricsEnabled\":true,\"ResultsPublishingEnabled\":true,\"ResultsS3Prefix\":\"\"},\"Ruleset\":\"Rules = [\\n    # Completeness Checks\\n    IsComplete \\\"station name\\\",                   # Ensures `station name` is not null\\n    IsComplete \\\"avg daily tapped entries\\\",       # Ensures `avg daily tapped entries` is not null\\n    IsComplete \\\"avg daily nontapped entries\\\",    # Ensures `avg daily nontapped entries` is not null\\n    IsComplete \\\"avg daily entries\\\",              # Ensures `avg daily entries` is not null\\n    IsComplete \\\"latitude\\\",                       # Ensures `latitude` is not null\\n    IsComplete \\\"longitude\\\",                      # Ensures `longitude` is not null\\n\\n    # Uniqueness Checks\\n    IsUnique \\\"station name\\\",                     # Ensures `station name` is unique across records\\n\\n    # Numeric Type Validation (Long for entry counts, Double for latitude/longitude)\\n    ColumnDataType \\\"avg daily tapped entries\\\" = \\\"long\\\",        # Ensures `avg daily tapped entries` is of type long\\n    ColumnDataType \\\"avg daily nontapped entries\\\" = \\\"long\\\",     # Ensures `avg daily nontapped entries` is of type long\\n    ColumnDataType \\\"avg daily entries\\\" = \\\"long\\\",               # Ensures `avg daily entries` is of type long\\n    ColumnDataType \\\"latitude\\\" = \\\"double\\\",                      # Ensures `latitude` is of type double\\n    ColumnDataType \\\"longitude\\\" = \\\"double\\\",                     # Ensures `longitude` is of type double\\n\\n\\n    # Column Count Validation\\n    ColumnCount = 6.0                            # Ensures dataset has exactly 6 columns\\n]\\n\",\"StopJobOnFailureOptions\":{}}},\"node-1733384338989\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733384251989\"],\"Name\":\"ruleOutcomes\"}},\"node-1733384215983\":{\"S3CatalogSource\":{\"AdditionalOptions\":{},\"Database\":\"lastmile-db\",\"Name\":\"Amazon S3\",\"PartitionPredicate\":\"\",\"Table\":\"metro_wmata\"}},\"node-1733384338138\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733384251989\"],\"Name\":\"originalData\"}},\"node-1733384584584\":{\"DropDuplicates\":{\"Columns\":[[\"station name\"]],\"Inputs\":[\"node-1733384338138\"],\"Name\":\"Drop Duplicates\"}},\"node-1733384615537\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1733383746579\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1733384587102\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://last-mile-data-transformed/wmata-metro-transformed/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1733384587102\":{\"DropNullFields\":{\"Inputs\":[\"node-1733384584584\"],\"Name\":\"Drop Null Fields\",\"NullCheckBoxList\":{\"IsEmpty\":true,\"IsNegOne\":false,\"IsNullString\":true},\"NullTextList\":[]}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "LastMileConnectivity",
+    "branch" : "main",
+    "folder" : "AWS Glue Jobs"
+  }
+}
