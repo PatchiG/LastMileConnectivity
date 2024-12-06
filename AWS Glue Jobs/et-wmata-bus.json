@@ -1,0 +1,41 @@
+{
+  "name" : "et-wmata-bus",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::463470950584:role/etl-last-mile-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-463470950584-us-east-1/scripts/et-wmata-bus.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-463470950584-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1733383772275\":{\"S3CatalogSource\":{\"AdditionalOptions\":{},\"Database\":\"lastmile-db\",\"Name\":\"Amazon S3\",\"PartitionPredicate\":\"\",\"Table\":\"bus_wmata\"}},\"node-1733384171324\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1733383746579\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1733384035916\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://last-mile-data-transformed/wmata-bus-transformed/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1733383787590\":{\"EvaluateDataQualityMultiFrame\":{\"AdditionalDataSources\":{},\"AdditionalOptions\":{\"performanceTuning.caching\":\"CACHE_NOTHING\"},\"Inputs\":[\"node-1733383772275\"],\"Name\":\"Evaluate Data Quality\",\"PublishingOptions\":{\"CloudWatchMetricsEnabled\":true,\"ResultsPublishingEnabled\":true,\"ResultsS3Prefix\":\"\"},\"Ruleset\":\"Rules = [\\n    # Completeness Checks\\n    IsComplete \\\"route\\\",                        # Ensures `route` is not null\\n    IsComplete \\\"average of weekday\\\",           # Ensures `average of weekday` is not null\\n    IsComplete \\\"average of saturday\\\",          # Ensures `average of saturday` is not null\\n    IsComplete \\\"average of sunday\\\",            # Ensures `average of sunday` is not null\\n    IsComplete \\\"average ridership\\\",            # Ensures `average ridership` is not null\\n\\n    # Uniqueness Checks\\n    IsUnique \\\"route\\\",                          # Ensures `route` is unique across records\\n\\n    # Numeric Type Validation (Double)\\n    ColumnDataType \\\"average of weekday\\\" = \\\"double\\\",    # Validates `average of weekday` is of type double\\n    ColumnDataType \\\"average of saturday\\\" = \\\"double\\\",   # Validates `average of saturday` is of type double\\n    ColumnDataType \\\"average of sunday\\\" = \\\"double\\\",     # Validates `average of sunday` is of type double\\n    ColumnDataType \\\"average ridership\\\" = \\\"double\\\",     # Validates `average ridership` is of type double\\n\\n    # Column Count Validation\\n    ColumnCount = 5.0                     # Ensures dataset has exactly 5 columns\\n]\\n\",\"StopJobOnFailureOptions\":{}}},\"node-1733383853684\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733383787590\"],\"Name\":\"originalData\"}},\"node-1733384035916\":{\"DropDuplicates\":{\"Columns\":[],\"Inputs\":[\"node-1733383853684\"],\"Name\":\"Drop Duplicates\"}},\"node-1733383854306\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733383787590\"],\"Name\":\"ruleOutcomes\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "LastMileConnectivity",
+    "branch" : "main",
+    "folder" : "AWS Glue Jobs"
+  }
+}
