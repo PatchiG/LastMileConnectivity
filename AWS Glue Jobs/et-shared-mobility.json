@@ -1,0 +1,41 @@
+{
+  "name" : "et-shared-mobility",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::463470950584:role/etl-last-mile-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-463470950584-us-east-1/scripts/et-shared-mobility.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-463470950584-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1733381435222\":{\"S3CatalogSource\":{\"AdditionalOptions\":{},\"Database\":\"lastmile-db\",\"Name\":\"Amazon S3\",\"PartitionPredicate\":\"\",\"Table\":\"shared_mobility\"}},\"node-1733381481140\":{\"EvaluateDataQualityMultiFrame\":{\"AdditionalDataSources\":{},\"AdditionalOptions\":{\"performanceTuning.caching\":\"CACHE_NOTHING\"},\"Inputs\":[\"node-1733381435222\"],\"Name\":\"Evaluate Data Quality\",\"PublishingOptions\":{\"CloudWatchMetricsEnabled\":true,\"ResultsPublishingEnabled\":true,\"ResultsS3Prefix\":\"\"},\"Ruleset\":\"Rules = [\\n    # Completeness Checks\\n    IsComplete \\\"title\\\",            # Ensures `title` is not null\\n    IsComplete \\\"id\\\",               # Ensures `id` is not null\\n    IsComplete \\\"networkname\\\",      # Ensures `networkname` is not null\\n    IsComplete \\\"networkid\\\",        # Ensures `networkid` is not null\\n    IsComplete \\\"latitude\\\",         # Ensures `latitude` is not null\\n    IsComplete \\\"longitude\\\",        # Ensures `longitude` is not null\\n    IsComplete \\\"type\\\",             # Ensures `type` is not null\\n    IsComplete \\\"location\\\",         # Ensures `location` is not null\\n\\n    # Uniqueness Checks\\n    IsUnique \\\"id\\\",                 # Ensures `id` is unique across records\\n\\n    # Data Type Validation\\n    \\n    ColumnDataType \\\"networkid\\\" = \\\"long\\\",\\n    ColumnDataType \\\"latitude\\\" = \\\"double\\\",\\n    ColumnDataType \\\"longitude\\\" = \\\"double\\\",\\n    ColumnDataType \\\"bike_count\\\" = \\\"long\\\",\\n    ColumnDataType \\\"electric_bike_count\\\" = \\\"long\\\",\\n    ColumnDataType \\\"dock_count\\\" = \\\"long\\\",\\n\\n    # Column Count Validation\\n    ColumnCount between 10 and 20   # Ensures dataset has between 10 and 20 columns\\n]\\n\",\"StopJobOnFailureOptions\":{}}},\"node-1733381622381\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733381481140\"],\"Name\":\"ruleOutcomes\"}},\"node-1733382558975\":{\"DropFields\":{\"Inputs\":[\"node-1733382475510\"],\"Name\":\"Drop Fields\",\"Paths\":[[\"textcolor\"],[\"color\"]]}},\"node-1733382573255\":{\"DropDuplicates\":{\"Columns\":[[\"id\"]],\"Inputs\":[\"node-1733382558975\"],\"Name\":\"Drop Duplicates\"}},\"node-1733382719634\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1733381410148\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1733382573255\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://last-mile-data-transformed\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1733382475510\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733381481140\"],\"Name\":\"originalData\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "LastMileConnectivity",
+    "branch" : "main",
+    "folder" : "AWS Glue Jobs"
+  }
+}
