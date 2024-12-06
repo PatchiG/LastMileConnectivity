@@ -1,0 +1,41 @@
+{
+  "name" : "et-nearby-stops",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::463470950584:role/etl-last-mile-role",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-463470950584-us-east-1/scripts/et-nearby-stops.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-463470950584-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-463470950584-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.0",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1733383531547\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1733381410148\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1733383512837\"],\"Name\":\"Amazon S3\",\"PartitionKeys\":[],\"Path\":\"s3://last-mile-data-transformed/nearby-stops-transformed/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1733383252498\":{\"EvaluateDataQualityMultiFrame\":{\"AdditionalDataSources\":{},\"AdditionalOptions\":{\"performanceTuning.caching\":\"CACHE_NOTHING\"},\"Inputs\":[\"node-1733383236607\"],\"Name\":\"Evaluate Data Quality\",\"PublishingOptions\":{\"CloudWatchMetricsEnabled\":true,\"ResultsPublishingEnabled\":true,\"ResultsS3Prefix\":\"\"},\"Ruleset\":\"Rules = [\\n    # Completeness Checks\\n    IsComplete \\\"global_stop_id\\\",                 # Ensures `global_stop_id` is not null\\n    IsComplete \\\"location_name\\\",                 # Ensures `location_name` is not null\\n    IsComplete \\\"stop_lat\\\",                      # Ensures `stop_lat` is not null\\n    IsComplete \\\"stop_lon\\\",                      # Ensures `stop_lon` is not null\\n    IsComplete \\\"stop_name\\\",                     # Ensures `stop_name` is not null\\n\\n    # Uniqueness Checks\\n    IsUnique \\\"global_stop_id\\\",                  # Ensures `global_stop_id` is unique across records\\n\\n    # Numeric Type Validation (Double/Long)\\n    ColumnDataType \\\"distance\\\" = \\\"long\\\",         # Validates `distance` is of type long\\n    ColumnDataType \\\"location_type\\\" = \\\"long\\\",    # Validates `location_type` is of type long\\n    ColumnDataType \\\"route_type\\\" = \\\"long\\\",       # Validates `route_type` is of type long\\n    ColumnDataType \\\"stop_lat\\\" = \\\"double\\\",       # Validates `stop_lat` is of type double\\n    ColumnDataType \\\"stop_lon\\\" = \\\"double\\\",       # Validates `stop_lon` is of type double\\n    ColumnDataType \\\"wheelchair_boarding\\\" = \\\"long\\\", # Validates `wheelchair_boarding` is of type long\\n\\n    # Column Count Validation\\n    ColumnCount between 10 and 15               # Ensures dataset has between 10 and 15 columns\\n]\\n\",\"StopJobOnFailureOptions\":{}}},\"node-1733383490949\":{\"DropFields\":{\"Inputs\":[\"node-1733383386925\"],\"Name\":\"Drop Fields\",\"Paths\":[[\"parent_station_global_stop_id\"]]}},\"node-1733383512837\":{\"DropNullFields\":{\"Inputs\":[\"node-1733383490949\"],\"Name\":\"Drop Null Fields\",\"NullCheckBoxList\":{\"IsEmpty\":true,\"IsNegOne\":false},\"NullTextList\":[]}},\"node-1733383388011\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733383252498\"],\"Name\":\"ruleOutcomes\"}},\"node-1733383386925\":{\"SelectFromCollection\":{\"Index\":0,\"Inputs\":[\"node-1733383252498\"],\"Name\":\"originalData\"}},\"node-1733383236607\":{\"S3CatalogSource\":{\"AdditionalOptions\":{},\"Database\":\"lastmile-db\",\"Name\":\"Amazon S3\",\"PartitionPredicate\":\"\",\"Table\":\"nearby_stops\"}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "LastMileConnectivity",
+    "branch" : "main",
+    "folder" : "AWS Glue Jobs"
+  }
+}
