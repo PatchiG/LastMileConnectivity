@@ -1,161 +1,250 @@
-# Last Mile Connectivity
-Addressing last mile connectivity for public transport using  - WMATA (Washington Metropolitan Area Transit Authority) Ridership Data, Capital Bikeshare Trip History Data, US Census Bureau Data and Transit App. AWS services were used for data storage, processing, and querying.
+---
+
+# Last Mile Connectivity in the DMV Region
+
+## Overview
+This project focuses on addressing the **last-mile connectivity problem** in the Washington, D.C., Maryland, and Virginia (DMV) region by leveraging various datasets, including **WMATA (Washington Metropolitan Area Transit Authority) Ridership Data**, **Capital Bikeshare Trip History Data**, **U.S. Census Bureau Data**, and the **Transit App API**. The goal is to identify gaps in multimodal transportation options and propose solutions to improve public transport accessibility.
 
 ---
 
-## Architecture 
+## Index
 
-![Architecture](Images/FinalArchitectureDiagram.png)
-
-
-## Data Sources
-
-### 1. **Transit API**
-#### How We Acquired It:
-- Requested academic access via [Transit API Request Form](https://forms.gle/4pNBfCRtvkGtNhDz5).
-- Acquired an API key through academic partnership.
-
-#### APIs Used:
-- `/public/nearby_route`: Lists transit routes near a specific location.
-- `/public/nearby_stops`: Provides details of transit stops within proximity of a point.
-- `/map_layers/placemarks`: Retrieves data on shared systems like bikeshare docks and scooters.
-
-#### Why We Acquired It:
-- To identify transit options near bikeshare stations.
-- To highlight areas lacking seamless multimodal connectivity.
-
-#### Data Processing:
-- JSON outputs were converted into CSV format.
-- Data was stored in an AWS S3 bucket for further cleaning and analysis.
-
-#### Screenshots:
-- **Transit API Sample JSON Output**: ![Sample Transit API JSON Output](placeholder_transit_api_output.png)
-- **Converted CSV File Example**: ![CSV Example](placeholder_transit_csv_file.png)
+1. [Introduction](#introduction)
+2. [Objectives](#objectives)
+3. [Problem Statement](#problem-statement)
+4. [Locations Considered](#locations-considered)
+5. [Data Sources](#data-sources)
+6. [Data Acquisition and Transformation](#data-acquisition-and-transformation)
+7. [Data Integration and Model](#data-integration-and-model)
+8. [Technology Stack and Architecture](#technology-stack-and-architecture)
+9. [Data Visualization](#data-visualization)
+10. [Athena Queries](#athena-queries)
+11. [Insights and Recommendations](#insights-and-recommendations)
+12. [Challenges and Lessons Learned](#challenges-and-lessons-learned)
+13. [Conclusion and Future Enhancements](#conclusion-and-future-enhancements)
+14. [References](#references)
+15. [Important Links](#important-links)
 
 ---
 
-### 2. **U.S. Census Data**
-#### How We Acquired It:
-- Accessed publicly available data from the Census Data Portal.
-
-#### What We Acquired:
-- **Total Population**: Breakdown by gender.
-- **Disability Distribution**: Percentages of people with disabilities.
-- **Employment Distribution**: Employment rates by region.
-- **Commute Preferences**: Modes of transportation used for commuting.
-- **Vehicle Ownership**: Households owning vehicles.
-- **School Enrollment**: School-age population data.
-
-#### Why We Acquired It:
-- To assess socioeconomic factors influencing transit needs.
-- To evaluate regions with potential demand for better connectivity solutions.
-
-#### Screenshots:
-- **Sample Census Data**: ![Census Data Example](placeholder_census_data.png)
+## Introduction
+The **"last-mile" connectivity problem** refers to the challenges commuters face in reaching their final destinations from public transit stops. This project aims to address these issues in the DMV region by analyzing ridership patterns, bike-share usage, and demographic factors to propose actionable solutions.
 
 ---
 
-### 3. **Capital Bikeshare Data**
-#### How We Acquired It:
-- Downloaded monthly CSV files from the [Capital Bikeshare System Data portal](https://www.capitalbikeshare.com/system-data).
-
-#### What We Acquired:
-- **Start and End Stations**: Location details.
-- **Trip Duration**: Total time for each ride.
-- **User Type**: Member vs. Casual riders.
-- **Bike ID**: Unique identifiers for bikes.
-
-#### Why We Acquired It:
-- To analyze station usage patterns.
-- To identify high-demand areas for last-mile connectivity improvements.
-
-#### Screenshots:
-- **Sample Bikeshare CSV Data**: ![Bikeshare CSV Example](placeholder_bikeshare_csv.png)
+## Objectives
+- **Data Integration**: Combine multiple data sources to understand last-mile connectivity challenges comprehensively.
+- **Gap Identification**: Pinpoint specific areas with insufficient transit and bikeshare infrastructure.
+- **Recommendations**: Develop feasible solutions to bridge connectivity gaps.
 
 ---
 
-### 4. **WMATA Data**
-#### How We Acquired It:
-- Retrieved data from the [WMATA Ridership Portal](https://www.wmata.com/).
-
-#### What We Acquired:
-- **Average Daily Ridership by Rail Station**: Passenger counts for rail stations.
-- **Average Daily Ridership by Route**: Passenger counts for bus and rail routes.
-
-#### Why We Acquired It:
-- To identify high-ridership stations or routes with potential connectivity issues.
-- To correlate ridership data with bikeshare and Census data for planning interventions.
-
-#### Screenshots:
-- **WMATA Data Portal Screenshot**: ![WMATA Data Screenshot](placeholder_wmata_data.png)
+## Problem Statement
+Public transportation in the DMV region faces significant last-mile challenges, resulting in:
+- Reduced transit system utilization.
+- Increased dependency on private vehicles.
+- Inequities in accessibility for underserved communities.
 
 ---
 
 ## Locations Considered
-- **Top 20 hubs in the DMV region**:
-  - Washington, DC
-  - Bethesda, MD
-  - Silver Spring, MD
-  - Arlington, VA
-  - Alexandria, VA
-  - Rockville, MD
-  - Gaithersburg, MD
-  - Tysons, VA
-  - Fairfax, VA
-  - McLean, VA
-  - Falls Church, VA
-  - Vienna, VA
-  - College Park, MD
-  - Greenbelt, MD
-  - Hyattsville, MD
-  - Laurel, MD
-  - Bowie, MD
-  - Chantilly, VA
-  - Reston, VA
-  - Manassas, VA
-
-
+Key locations analyzed in the DMV region include:
+- **Washington, D.C.**
+- **Bethesda, MD**
+- **Silver Spring, MD**
+- **Arlington, VA**
+- **Alexandria, VA**
+- **Rockville, MD**
+- **Gaithersburg, MD**
+- **Tysons, VA**
+- **Fairfax, VA**
+- **McLean, VA**
+- **Falls Church, VA**
+- **Vienna, VA**
+- **College Park, MD**
+- **Greenbelt, MD**
+- **Hyattsville, MD**
+- **Laurel, MD**
+- **Bowie, MD**
+- **Chantilly, VA**
+- **Reston, VA**
+- **Manassas, VA**
 
 ---
 
-## AWS Services Used
-
-### **1. AWS S3**
-#### Purpose:
-- Centralized storage for raw, transformed, and processed datasets.
-
-#### Directory Structure:
-- `/raw`: Contains raw data.
-- `/transformed`: Contains cleaned and transformed data.
-- `/athena`: Contains Athena query results.
-
-#### Screenshots:
-- **S3 Directory Structure**: ![S3 Directory Structure](placeholder_s3_directory_structure.png)
+## Data Sources
+1. **WMATA Ridership Data**: Provides insights into public transit usage.
+2. **Capital Bikeshare Data**: Highlights bike-share trends and station demands.
+3. **U.S. Census Bureau Data**: Offers demographic and socioeconomic context.
+4. **Transit App API**: Supplies real-time transit data and stop information.
 
 ---
 
-### **2. AWS Glue**
-#### AWS Crawlers:
-- Created to generate data schemas for all datasets.
-- Example Crawler: `shared-mobility-crawler`.
-- Example Schema: `shared_mobility`.
+## Data Acquisition and Transformation
 
-#### AWS Glue Jobs:
-- Designed for extracting, cleaning, and transforming datasets.
-- Example Jobs:
-  - `transform-transit-api-data`.
-  - `clean-capital-bikeshare-data`.
-  - `merge-wmata-census-data`.
-- **Rulesets**: Defined to standardize transformation pipelines.
+### 1. **Capital Bikeshare Data**
+- **Acquisition**: Monthly CSV files downloaded from the [Capital Bikeshare System Data portal](https://www.capitalbikeshare.com/system-data).
+- **Purpose**: Analyze trip patterns and identify high-demand areas for bike-sharing.
+- **Data Content**: Includes start/end stations, trip durations, and user types.
 
-#### Screenshots:
-- **AWS Glue Crawlers**: ![Glue Crawler Example](placeholder_glue_crawlers.png)
-- **AWS Glue Job Example**: ![Glue Job Example](placeholder_glue_job.png)
+### 2. **Transit API Data**
+- **Acquisition**: Accessed via the Transit API, providing real-time data on transit routes and stops.
+- **Purpose**: Evaluate the proximity of transit options to bikeshare stations and identify underserved regions.
+  
+### 3. **U.S. Census Bureau Data**
+- **Acquisition**: Public data from the U.S. Census Data Portal.
+- **Purpose**: Analyze socio-economic and demographic factors to assess public transportation needs.
+  
+### 4. **WMATA Ridership Data**
+- **Acquisition**: Open data from the [WMATA Ridership Portal](https://www.wmata.com/).
+- **Purpose**: Analyze ridership data to identify high-traffic areas and assess connectivity gaps.
 
 ---
 
-### **3. AWS Athena**
-- Used to query transformed datasets stored in S3.
+## Data Integration and Model
+The datasets were integrated to create a comprehensive view of last-mile connectivity. Key steps involved geospatial analysis, data mapping, and combining datasets to identify proximity and demand patterns.
 
-#### Example Query:
+**Target Data Model:**
+- **Bus WMATA**: Includes average ridership for different routes.
+- **Metro WMATA**: Contains data on metro stations and ridership.
+- **Nearby Stops**: Information on nearby transit stops.
+- **Shared Mobility**: Data on bikeshare stations and their bike counts.
+- **US Census**: Demographic breakdowns including commuting preferences and vehicle ownership.
+- **Capital Bikeshare**: Information on trips, stations, and user types.
 
+---
+
+## Technology Stack and Architecture
+
+![Architecture](Images/FinalArchitectureDiagram.png)
+
+- **AWS S3**: Storage for raw and transformed data.
+- **AWS Glue**: ETL processes for data cleaning and transformation.
+- **AWS Athena**: Serverless querying of integrated datasets.
+- **AWS QuickSight**: Data visualization and dashboard creation.
+
+---
+
+## Data Visualization
+
+### Athena Queries
+
+#### Popular Bike Sharing Routes:
+```sql
+SELECT start_station_name, end_station_name, COUNT(ride_id) AS ride_count
+FROM capital_bikeshare
+WHERE start_station_name != ''
+    AND end_station_name != ''
+GROUP BY start_station_name, end_station_name
+ORDER BY ride_count DESC;
+```
+
+#### Average Weekday Bus Ridership:
+```sql
+SELECT route, "average of weekday", "average of saturday", "average of sunday"
+FROM bus_wmata
+ORDER BY "average of weekday" DESC;
+```
+
+#### Average Daily Ridership in Metro:
+```sql
+SELECT "station name", 
+       AVG("avg daily tapped entries") AS avg_tapped_entries,
+       AVG("avg daily nontapped entries") AS avg_nontapped_entries
+FROM metro_wmata
+GROUP BY "station name";
+```
+
+#### Availability of Bikes and E-Bikes:
+```sql
+SELECT location, sum(bike_count) as bike_count, sum(electric_bike_count) as electric_bike_count
+FROM shared_mobility
+GROUP BY location
+ORDER BY bike_count DESC, electric_bike_count DESC;
+```
+
+#### Proximity Analysis Based on Shared Mobility and Nearby Routes:
+```sql
+SELECT nr.route_short_name, nr.location, sm.location, sum(sm.bike_count) as bike_count
+FROM nearby_routes nr
+JOIN shared_mobility sm 
+  ON ST_Distance(ST_Point(nr.longitudes, nr.latitudes), ST_Point(sm.longitude, sm.latitude)) < 1000  
+GROUP BY 1,2,3
+ORDER BY 4 DESC;
+```
+
+#### Proximity Analysis Based on Shared Mobility and Metro Stations:
+```sql
+SELECT ns.stop_name, ns.location_name, sm.location, sum(sm.bike_count) as bike_count
+FROM nearby_stops ns
+JOIN shared_mobility sm 
+  ON ST_Distance(ST_Point(ns.stop_lat, ns.stop_lon), ST_Point(sm.longitude, sm.latitude)) < 1000  
+GROUP BY 1,2,3
+ORDER BY 4 DESC;
+```
+
+#### Demography Analysis About Travel Methods:
+```sql
+SELECT distinct REPLACE(label, '"','' ) as county_name,
+       max("drove alone") as "drove alone",
+       max("carpooled") as "carpooled",
+       max("employed population") as "employed population",
+       max("18 to 34 years") as "18 to 34 years",
+       max("35 to 64 years") as "35 to 64 years",
+       max("65 years and over") as "65 years and over"
+FROM us_census
+WHERE level = 'County'
+GROUP BY 1
+ORDER BY 2 DESC;
+```
+
+#### Overall Proximity Analysis:
+```sql
+SELECT ns.*, sm.*
+FROM "AwsDataCatalog"."lastmile-db"."nearby_stops" ns
+JOIN "AwsDataCatalog"."lastmile-db"."shared_mobility" sm 
+  ON ST_Distance(ST_Point(ns.stop_lat, ns.stop_lon), ST_Point(sm.longitude, sm.latitude)) < 1000;
+```
+
+---
+
+## Insights and Recommendations
+
+### Key Insights:
+- **Ridership Gaps**: Areas like **Rockville** lack sufficient bikeshare stations.
+- **High-Demand Areas**: Metro stations in **D.C.** and **Maryland** could benefit from more bike-share allocations.
+
+### Recommendations:
+- Expand bikeshare stations in underserved areas.
+- Improve coordination between bikeshare stations and metro stops.
+- Optimize bike allocations at high-demand metro stations.
+
+---
+
+## Challenges and Lessons Learned
+- **Challenges**: Addressing inconsistencies and missing data, managing AWS costs.
+- **Lessons Learned**: Gained proficiency with AWS tools, improved collaboration.
+
+---
+
+## Conclusion and Future Enhancements
+- Developed a scalable data pipeline and delivered actionable insights.
+- **Future Enhancements**:
+  - Integrating machine learning models for predictive analysis.
+  - Transitioning to AWS Redshift for persistent data storage.
+
+---
+
+## References
+- [WMATA Open Data Hub: WMATA Ridership Data](https://www.wmata.com/)
+- [Capital Bikeshare System Data](https://www.capitalbikeshare.com/system-data)
+- [U.S. Census Bureau](https://www.census.gov/data)
+- [Transit App API](https://transitapp.com/)
+
+---
+
+## Important Links
+- All code and data are available in the GitHub repository.
+- Presentation Slides
+
+---
