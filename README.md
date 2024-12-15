@@ -7,6 +7,12 @@ This project focuses on addressing the **last-mile connectivity problem** in the
 
 ---
 
+## Presentation
+
+Link to the presentation: https://docs.google.com/presentation/d/1g2jAeqQMizMV6_oXJwlm74qR2guNTQHnsF2ofKPLGfE/edit?usp=sharing
+
+---
+
 ## Index
 
 1. [Introduction](#introduction)
